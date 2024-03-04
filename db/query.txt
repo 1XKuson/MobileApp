@@ -1,0 +1,19 @@
+-- Insert data into Professors table
+INSERT INTO Professors (ProfessorID, FirstName, LastName, DateOfBirth, Gender, Email, Phone, OfficeLocation, imagesID)
+VALUES (1, 'John', 'Doe', '1990-01-01', 'M', 'john.doe@email.com', '1234567890', 'Office 101', 1);
+
+-- Insert data into AcademicDetails table
+INSERT INTO AcademicDetails (ProfessorID, Department, FacultyCollege, AcademicRankPosition, CoursesTaught, ResearchAreasInterests, EducationBackground)
+VALUES (1, 'Computer Science', 'Engineering', 'Professor', 'Introduction to Programming', 'Machine Learning', 'Ph.D. in Computer Science, XYZ University, 2010');
+
+-- Insert data into ResearchPublications table
+INSERT INTO ResearchPublications (ProfessorID, PublishedPapers, ResearchProjects, ConferencePresentations, Patents)
+VALUES (1, 'Paper 1 Title', 'Project A', 'Conference Presentation X', 'Patent Y');
+
+-- Insert data into TeachingAdvising table
+INSERT INTO TeachingAdvising (ProfessorID, CoursesTaught)
+VALUES (1, 'Database Systems, Artificial Intelligence');
+
+
+
+

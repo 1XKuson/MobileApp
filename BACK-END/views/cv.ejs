@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="cv.css"> -->
+    <!-- <link rel="stylesheet" href="%=cssFilePath%"> -->
+    
+    <title>CV</title>
+</head>
+<body>
+    <div class="resume" id="resume">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Prompt:wght@200;300;400;500;600;700&display=swap');
+            body {
+                font-family:'Prompt',sans-serif;
+                margin: 0;
+                padding: 20px;
+            }
+            
+            .resume {
+                max-width: 800x;
+                margin: 0 auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+            }
+
+            .outProfile {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+
+            .nameThai {
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .nameEng {
+                font-size: 22px;
+            }
+
+            .statusLecture {
+                font-size: 16px;
+            }
+
+            .pictureProfile img {
+                width: 100px;
+            }
+
+            .under-line {
+                background-color: black;
+                width: 100%;
+                height: 2px;
+                margin-bottom: 10px;
+            }
+
+            .line-st {
+                background-color: black;
+                width: 2px;
+                height: 100%;
+                margin: 0 20px 0 0;
+            }
+
+            .cont-edu {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .headcont-edu {
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+
+            .con-list {
+                margin: 5px 0;
+            }
+
+            .dCont {
+                font-size: 15px;
+            }
+
+            .profileContract {
+                width: 375px;
+            }
+
+            .profileContract img{
+                width: 15px;
+            }
+
+            .eduBackground {
+                display: flex;
+                align-items: center;
+            }
+
+            .groupEdu {
+                display: flex;
+            }
+
+            .profileEdu {
+                margin-right: 20px;
+                width: 375px;
+            }
+
+            .years {
+                font-size: 17px;
+                margin: 0 10px 0 0;
+            }
+
+            .coll {
+                margin: 5px 0;
+            }
+
+            .degreeCourse {
+                font-size: 15px;
+                font-weight: 600;
+            }
+
+            .university {
+                font-size: 12px;
+            }
+
+            .headPerformance {
+                font-size: 18px;
+                font-weight: 600;
+            }
+
+            .profileList {
+                margin: 10px 0;
+                font-size: 15px;
+            }
+
+            .h-list-performance {
+                font-weight: 600;
+            }
+       
+        </style>
+        <div class="outProfile">
+            <div class="nameProfile">
+                <div class="nameThai"><%=Head[0]%> <%=Head[1]%> <%=Head[2]%></div>
+                <div class="nameEng"><%=Head[3]%> <%=Head[4]%> <%=Head[5]%></div>
+                <div class="statusLecture"><%=Head[6]%></div>
+            </div>
+            <div class="pictureProfile"><img src="<%=image%>" alt=""></div>
+        </div>
+        
+            <div class="under-line"></div>
+            <div class="cont-edu">
+                <div class="profileContract">
+                    <div class="headcont-edu">ช่องทางการติดต่อ</div>
+                    <div class="con-list">
+                        <label><img src="<%=base64Images[0]%>" alt=""></label>
+                        <label class="dCont"><%=Head[7]%></label>
+                    </div>
+                    <div class="con-list">
+                        <label><img src="<%=base64Images[1]%>" alt=""></label>
+                        <label class="dCont"><%=Head[8]%></label>
+                    </div>
+                    <div class="con-list">
+                        <label><img src="<%=base64Images[2]%>" alt=""></label>
+                        <label class="dCont"><%=Head[9]%></label>
+                    </div>
+                </div>
+            <div class="groupEdu">
+                <div class="line-st"></div>
+                <div class="profileEdu">
+                    <div class="headcont-edu">ประวัติการศึกษา</div>
+                    <%for(let i=0 ; i < edubackground.length ; i++){%>
+                        <div class="eduBackground">
+                            <div class="years"><%=edubackground[i].Year.slice(0,4)%></div>
+                            <div class="coll">
+                                <div class="degreeCourse"><%=edubackground[i].Degree%> <%=edubackground[i].Faculty%> <%=edubackground[i].Program%></div>
+                                <div class="university"><%=edubackground[i].Institute%></div>
+                            </div>
+                        </div>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+        <div class="profilePerformance">
+            <div class="headPerformance">ผลงานวิชาการ</div>
+            <%for(let i=0 ; i < journal.length ;i++){%>
+                <div class="profileList">
+                    <table>
+                        <tr>
+                            <td class="h-list-performance">O</td>
+                            <td class="h-list-performance"><%=journal[i].Topic%></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="d-list-performance"><%=journal[i].PublishedDate.slice(0,4)%> | <%=journal[i].Publisher%></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="p-list-performance"><%=journal[i].Description%></td>
+                        </tr>
+                    </table>
+                </div>
+            <%}%>
+
+            <%for(let i=0 ; i < proceeding.length ;i++){%>
+                <div class="profileList">
+                    <table>
+                        <tr>
+                            <td class="h-list-performance">O</td>
+                            <td class="h-list-performance"><%=proceeding[i].Topic%></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="d-list-performance"><%=proceeding[i].PublishedDate.slice(0,4)%> | <%=proceeding[i].Publisher%></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="p-list-performance"><%=proceeding[i].Description%></td>
+                        </tr>
+                    </table>
+                </div>
+            <%}%>
+
+            <%for(let i=0 ; i < project.length ;i++){%>
+                <div class="profileList">
+                    <table>
+                        <tr>
+                            <td class="h-list-performance">O</td>
+                            <td class="h-list-performance"><%=project[i].ProjectName%></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="d-list-performance"><%=project[i].StartDate.slice(0,4)%> - <%=project[i].EndDate.slice(0,4)%> | <%=project[i].FundingType%> : <%=project[i].Funder%> </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="p-list-performance"><%=project[i].Description%></td>
+                        </tr>
+                    </table>
+                </div>
+            <%}%>
+
+            <%for(let i=0 ; i < otherProject.length ;i++){%>
+                <div class="profileList">
+                    <table>
+                        <tr>
+                            <td class="h-list-performance">O</td>
+                            <td class="h-list-performance"><%=otherProject[i].Title%></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="p-list-performance"><%=otherProject[i].Description%></td>
+                        </tr>
+                    </table>
+                </div>
+            <%}%>
+            
+        </div>
+        <div class="profilePerformance">
+            <div class="headPerformance">ความสนใจ</div>
+            <% for (let i = 0; i < interestTopic.length; i++) { %>
+                <div class="profileList">
+                    <table>
+                        <tr>
+                            <td class="h-list-performance">O</td>
+                            <td class="h-list-performance"><%=interestTopic[i].Topic%></td>
+                        </tr>
+                    </table>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <button id="contactButton">Get CV</button>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add a click event listener to the contactButton
+            document.getElementById('contactButton').addEventListener('click', function () {
+                // Serialize the HTML content of the resume div
+                const htmlContent = document.getElementById('resume').outerHTML;
+        
+                // Make a POST request to the server
+                fetch('/pdf/capture', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ htmlContent }),
+                })
+                .then(response => response.blob())
+                .then(blob => {
+                    // Create a temporary link element to trigger the download
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = 'resume.pdf';
+                    link.click();
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+</body>
+</html>

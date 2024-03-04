@@ -1,0 +1,49 @@
+-- Professor Information Table
+CREATE TABLE Professors (
+    ProfessorID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    DateOfBirth DATE,
+    Gender CHAR(1),
+    Email VARCHAR(255),
+    Phone VARCHAR(20),
+    OfficeLocation VARCHAR(100),
+    imagesID INT(10)
+);
+
+-- Academic Details Table
+CREATE TABLE AcademicDetails (
+    ProfessorID INT,
+    Department VARCHAR(50),
+    FacultyCollege VARCHAR(50),
+    AcademicRankPosition VARCHAR(50),
+    CoursesTaught VARCHAR(255),
+    ResearchAreasInterests VARCHAR(255),
+    EducationBackground TEXT,
+    FOREIGN KEY (ProfessorID) REFERENCES Professors(ProfessorID)
+);
+
+-- Research and Publications Table
+CREATE TABLE ResearchPublications (
+    ProfessorID INT,
+    PublishedPapers TEXT,
+    ResearchProjects TEXT,
+    ConferencePresentations TEXT,
+    Patents TEXT,
+    FOREIGN KEY (ProfessorID) REFERENCES Professors(ProfessorID)
+);
+
+-- Teaching and Advising Table
+CREATE TABLE TeachingAdvising (
+    ProfessorID INT,
+    CoursesTaught TEXT,
+    FOREIGN KEY (ProfessorID) REFERENCES Professors(ProfessorID)
+);
+
+CREATE TABLE images(
+    imagesID int(10) NOT NULL,AUTO_INCREMENT PRIMARY KEY,
+    file_name VARCHAR(255) NOT NULL,
+    uploaded_on DATETIME NOT NULL,
+    status enum('1','0') NOT NULL DEFAULT  '1'
+
+) 

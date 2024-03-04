@@ -1,0 +1,189 @@
+CREATE TABLE Professor (
+  ProfessorID VARCHAR(255) PRIMARY KEY,
+  FirstNameTH VARCHAR(100),
+  LastNameTH VARCHAR(100),
+  DateOfBirth DATE,
+  Gender VARCHAR(6) CHECK (Gender IN ('Female', 'Male')),
+  Email VARCHAR(50),
+  Phone VARCHAR(10),
+  OfficeLocation VARCHAR(255),
+  imageID INT,
+  LastNameEng VARCHAR(100),
+  FirstNameEng VARCHAR(100)
+);
+
+
+CREATE TABLE EducationBackground (
+  EducationID INT PRIMARY KEY AUTO_INCREMENT,
+  Year DATE,
+  Faculty VARCHAR(50),
+  Degree VARCHAR(255),
+  Institute VARCHAR(255),
+  Program VARCHAR(255),
+  ProfessorID VARCHAR(255),
+  FOREIGN KEY (ProfessorID) REFERENCES Professor(ProfessorID)
+);
+
+
+CREATE TABLE Department (
+  DepartmentID INT PRIMARY KEY AUTO_INCREMENT,
+  Department VARCHAR(50)
+);
+
+CREATE TABLE Program (
+  ProgramID INT PRIMARY KEY AUTO_INCREMENT,
+  TitleName VARCHAR(50),
+  FullName VARCHAR(255),
+  ProgramName VARCHAR(255),
+  RevisedYear DATE
+);
+
+drop table Academic;
+CREATE TABLE Academic (
+  ProfessorID INT PRIMARY KEY AUTO_INCREMENT,
+  Faculty VARCHAR(50),
+  AcademicRankPosition VARCHAR(50),
+  EducationID INT,
+  DepartmentID INT,
+  ProgramID INT,
+  FOREIGN KEY (EducationID) REFERENCES EducationBackground(EducationID),
+  FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
+  FOREIGN KEY (ProgramID) REFERENCES Program(ProgramID)
+);
+
+
+drop table StudentAdvisor ;
+CREATE TABLE StudentAdvisor (
+  ProfessorID VARCHAR(255),
+  Master INT,
+  Doctor INT,
+  PresentMaster INT,
+  PresentDoctor INT,
+  FOREIGN KEY (ProfessorID) REFERENCES Professor(ProfessorID)
+);
+
+CREATE TABLE ResearchInterestTopic (
+  InterestID INT PRIMARY KEY AUTO_INCREMENT,
+  Topic VARCHAR(255),
+  Description VARCHAR(255),
+  ProfessorID VARCHAR(255),
+  FOREIGN KEY (ProfessorID) REFERENCES Professor(ProfessorID)
+);
+
+CREATE TABLE CoursesTaught (
+  CourseID INT PRIMARY KEY AUTO_INCREMENT,
+  Course VARCHAR(255),
+  Credit INT,
+  ProfessorID VARCHAR(255),
+  FOREIGN KEY (ProfessorID) REFERENCES Professor(ProfessorID)
+);
+
+CREATE TABLE UserLogin (
+  UserID INT PRIMARY KEY AUTO_INCREMENT,
+  ProfessorID VARCHAR(255),
+  Username VARCHAR(255),
+  PasswordHash VARCHAR(255),
+  Email CHAR(50),
+  FOREIGN KEY (ProfessorID) REFERENCES Professor(ProfessorID)
+);
+
+CREATE TABLE Type (
+  TypeID INT PRIMARY KEY  AUTO_INCREMENT,
+  TypeName VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Proceeding (
+  ProceedingID INT PRIMARY KEY AUTO_INCREMENT,
+  Topic VARCHAR(255),
+  PublishedDate DATE,
+  TypeID INT,
+  Description VARCHAR(1024), -- Specify a length for the VARCHAR column
+  Publisher VARCHAR(255),
+  ProfessorID VARCHAR(255),
+  Level VARCHAR(255),
+  AcadDatabase VARCHAR(255),
+  URL VARCHAR(255),
+  DOI VARCHAR(255),
+  AuthorProfessorID VARCHAR(255),
+  FOREIGN KEY (TypeID) REFERENCES Type(TypeID),
+  FOREIGN KEY (ProfessorID) REFERENCES Professor(ProfessorID)
+);
+
+
+
+CREATE TABLE Journal (
+  JournalID INT PRIMARY KEY AUTO_INCREMENT,
+  Topic VARCHAR(255),
+  PublishedDate DATE ,
+  TypeID INT,
+  Description VARCHAR(1024),
+  Publisher VARCHAR(255),
+  ProfessorID VARCHAR(255),
+  Level VARCHAR(255),
+  AcadDatabase VARCHAR(255),
+  URL VARCHAR(255),
+  DOI VARCHAR(255),
+  Quatile VARCHAR(255),
+  FOREIGN KEY (TypeID) REFERENCES Type(TypeID),
+  FOREIGN KEY (ProfessorID) REFERENCES Professor(ProfessorID)
+);
+
+CREATE TABLE Book (
+  BookID INT PRIMARY KEY AUTO_INCREMENT,
+  Title VARCHAR(255),
+  PublishedDate DATE,
+  TypeID INT,
+  Description VARCHAR(1024),
+  Publisher VARCHAR(255),
+  ProfessorID VARCHAR(255),
+  ISBN VARCHAR(255),
+  Author VARCHAR(255),
+  FOREIGN KEY (TypeID) REFERENCES Type(TypeID),
+  FOREIGN KEY (ProfessorID) REFERENCES Professor(ProfessorID)
+);
+
+CREATE TABLE Project (
+  ProjectID INT PRIMARY KEY AUTO_INCREMENT,
+  ProjectName VARCHAR(255),
+  StartDate DATE,
+  Description VARCHAR(1024),
+  Position VARCHAR(255),
+  ProfessorID VARCHAR(255),
+  FundingType VARCHAR(255),
+  Funder VARCHAR(255),
+  EndDate DATE,
+  Budget INT,
+  FOREIGN KEY (ProfessorID) REFERENCES Professor(ProfessorID)
+);
+
+
+CREATE TABLE Experience (
+  ExperienceID INT PRIMARY KEY AUTO_INCREMENT,
+  Organization VARCHAR(255),
+  EndDate DATE,
+  StartDate DATE,
+  Description VARCHAR(1024),
+  ProfessorID VARCHAR(255),
+  Position VARCHAR(255),
+  FOREIGN KEY (ProfessorID) REFERENCES Professor(ProfessorID)
+);
+
+CREATE TABLE TrainingExperience (
+  TrainExpID INT PRIMARY KEY AUTO_INCREMENT,
+  TrainingName VARCHAR(255),
+  Organization VARCHAR(255),
+  StartDate DATE,
+  EndDate DATE,
+  ProfessorID VARCHAR(255),
+  URL VARCHAR(255),
+  FOREIGN KEY (ProfessorID) REFERENCES Professor(ProfessorID)
+);
+
+CREATE TABLE OtherProject (
+  OtherProjectID INT PRIMARY KEY AUTO_INCREMENT,
+  Title VARCHAR(255),
+  Description VARCHAR(1024),
+  ProfessorID VARCHAR(255),
+  FOREIGN KEY (ProfessorID) REFERENCES Professor(ProfessorID)
+);
+
